@@ -6,7 +6,7 @@ const initialState = {
   user: {
     userName: 'raul',
     userPhoto: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
-    userId: 12135324,
+    userId: 123153342,
   },
   comments: []
 }
