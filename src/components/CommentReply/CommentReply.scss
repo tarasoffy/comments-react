@@ -1,0 +1,71 @@
+%itemCenter {
+    display: flex;
+    align-items: center;
+}
+
+.reply {
+    // display: flex;
+    width: 450px;
+    margin-top: 20px;
+
+    .reply_wrapper {
+        width: 100%;
+        display: flex;
+    }
+}
+
+.reply__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+
+    .reply__header {
+        width: 100%;
+        @extend %itemCenter;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .reply__reply {
+        @extend %itemCenter;
+        cursor: pointer;
+
+        span {
+            color: #5457B8;
+            margin-left: 5px;
+        }
+    }
+
+    .reply__user-name {
+        color: #3D434D;
+        font-weight: 500;
+        margin: 0 20px;
+    }
+
+    .reply__user-info {
+        @extend %itemCenter;
+
+        & img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .reply__user-data {
+            color: #969696;
+        }
+        
+    }
+
+    .reply__text p{
+        color: #969696;
+
+        span {
+            font-weight: 500;
+            color: #5457B8;
+            margin-right: 5px;
+        }
+    }
+
+}
