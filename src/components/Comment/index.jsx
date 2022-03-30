@@ -4,6 +4,7 @@ import CommentsSvg from "../../assets/icons/CommentsSvg";
 import "./Comment.scss";
 import CommentReply from "../CommentReply";
 import { useSelector } from "react-redux";
+import ReplyInput from "../ReplyInput";
 
 const Comment = ({ ...props }) => {
   let { user } = useSelector((user) => user.commentsSlice);
@@ -54,6 +55,9 @@ const Comment = ({ ...props }) => {
             <p>{props.comment}</p>
           </div>
         </div>
+      </div>
+      <div className="comment__reply-input">
+        <ReplyInput addressed={props.name} />
       </div>
       <div className="comment__reply">
         <div className="comment__reply-wrapper">

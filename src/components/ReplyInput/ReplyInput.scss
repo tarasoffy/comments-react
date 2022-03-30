@@ -1,0 +1,24 @@
+.reply__input {
+
+    display: flex;
+    align-items: center;
+
+    button {
+        width: 70px;
+        height: 35px;
+        color: #fff;
+        font-weight: 600;
+        background-color: #5457B8;
+        text-transform: uppercase;
+        border-radius: 5px;
+    }
+
+    input {
+        margin: 20px;
+        padding: 0 5px;
+        width: 100%;
+        border-radius: 5px;
+        height: 70px;
+        border: 1px solid #C9C8DD;
+    }
+}
