@@ -19,6 +19,30 @@ export const fetchComments = createAsyncThunk(
   }
 )
 
+// export const fetchEditComments = createAsyncThunk(
+//   'comments/fetchEditComments',
+//   async ({id}) => {
+//     let response = await axios.put('http://localhost:3005/comments', {
+      
+//     }, {
+//       params: {
+//         id: id
+//       }
+//     });
+//     return response.data
+//   }
+// )
+
+export const fetchDeleteComments = createAsyncThunk(
+    'comments/fetcDeleteComments',
+    async ({id}, {dispatch}) => {
+      let response = await axios.delete(`http://localhost:3005/comments/${id}`);
+      dispatch(deleteComment(id))
+      return response.data
+    }
+  )
+
+
 export const fetchNewComments = createAsyncThunk(
   'comments/fetchNewComments',
   async ({comment, id}) => {
@@ -58,6 +82,11 @@ export const commentsSlice = createSlice({
 
       let comment = state.comments.filter(item => item.commentId === payload.commentId)
       comment[0].replys.push(commentData)
+    },
+
+    deleteComment: (state, {payload}) => {
+      let restComments = state.comments.filter(item => item.id !== payload);
+      state.comments = restComments
     }
   },
 
@@ -69,10 +98,15 @@ export const commentsSlice = createSlice({
     builder.addCase(fetchNewComments.fulfilled, (state, {payload}) => {
       state.comments.push(payload)
     })
+
+    builder.addCase(fetchDeleteComments.fulfilled, (state, {payload}) => {
+      
+    })
+
   },
 })
 
 
-export const { addReplyComment } = commentsSlice.actions
+export const { addReplyComment, deleteComment } = commentsSlice.actions
 
 export default commentsSlice.reducer

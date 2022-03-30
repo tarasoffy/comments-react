@@ -5,7 +5,7 @@ import CommentsSvg from "../../assets/icons/CommentsSvg";
 import { useSelector } from "react-redux";
 
 const CommentReply = ({ reply }) => {
-  console.log(reply);
+  // console.log(reply);
 
   let { user } = useSelector((user) => user.commentsSlice);
 

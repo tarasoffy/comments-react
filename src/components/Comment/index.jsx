@@ -3,13 +3,17 @@ import Counter from "../Counter";
 import CommentsSvg from "../../assets/icons/CommentsSvg";
 import "./Comment.scss";
 import CommentReply from "../CommentReply";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReplyInput from "../ReplyInput";
+import { fetchEditComments, fetchDeleteComments } from "../../store/slices/commentsSlice";
+
 
 const Comment = ({ ...props }) => {
   let { user } = useSelector((user) => user.commentsSlice);
 
-  console.log(props);
+  let dispatch = useDispatch()
+
+  // console.log(props);
 
   let [visibleReplyInput, setVisibleReplyInput] = useState(false)
 
@@ -20,6 +24,15 @@ const Comment = ({ ...props }) => {
   const replyComment = () => {
     setVisibleReplyInput(!visibleReplyInput)
   }
+
+  // const commentEdit = () => {
+  //   dispatch(fetchEditComments({id:props.commentId}))
+  // }
+
+  const commentDelete = () => {
+    dispatch(fetchDeleteComments({id:props.commentId}))
+  }
+
 
   return (
     <div className="comment">
@@ -40,7 +53,7 @@ const Comment = ({ ...props }) => {
             <div className="comment__reply">
               {props.commentUserId === user.userId ? (
                 <div className=" comment__wrapper-btn">
-                  <div className="comment__delete">
+                  <div onClick={commentDelete} className="comment__delete">
                     <CommentsSvg id="delete" />
                     <button className="comment__delete-btn">Delete</button>
                     </div>
