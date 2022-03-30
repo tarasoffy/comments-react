@@ -13,10 +13,10 @@ const CommentReply = ({ reply }) => {
     <>
       {reply.length
         ? reply.map((item) => (
-            <div className="reply" key={item.commentId}>
+            <div className="reply" key={item.userId}>
               <div className="reply_wrapper">
                 <div className="reply__counter">
-                  <Counter likes={item.couterLikes} />
+                  <Counter likes={item.counterLikes} />
                 </div>
                 <div className="reply__inner">
                   <div className="reply__header">

@@ -1,55 +1,55 @@
 {
-    "comments": [
+  "comments": [
+    {
+      "id": 1,
+      "user": {
+        "userId": 12135324,
+        "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
+        "userName": "patrik"
+      },
+      "data": 1648224370870,
+      "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне.",
+      "counterLikes": 10,
+      "replys": [
         {
-            "commentId": 43253252,
-            "user": {
-                "userId": 12135324,
-                "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-                "userName": "patrik"
-            },
-            "data": "1648224370870",
-            "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне.",
-            "couterLikes": 10,
-            "replys": [
-                {
-                    "commentId": 5325253,
-                    "addressed": "patrik",
-                    "user": {
-                        "userId": 12345325,
-                        "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-                        "userName": "john"
-                    },
-                    "data": "1647454370870",
-                    "comment": "Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века.",
-                    "couterLikes": 6
-                },
-                {
-                    "commentId": 453252352,
-                    "addressed": "john",
-                    "user": {
-                        "userId": 123153342,
-                        "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-                        "userName": "raul"
-                    },
-                    "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-                    "userName": "raul",
-                    "data": "1647454370870",
-                    "comment": "Lorem Ipsum является стандартной.",
-                    "couterLikes": 1
-                }
-            ]
+          "id": 1,
+          "addressed": "patrik",
+          "user": {
+            "userId": 12345325,
+            "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
+            "userName": "john"
+          },
+          "data": 1647454370870,
+          "comment": "Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века.",
+          "counterLikes": 6
         },
         {
-            "commentId": 2532253523,
-            "user": {
-                "userId": 12343522,
-                "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-                "userName": "margo"
-            },
-            "data": "1647454370870",
-            "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века.",
-            "couterLikes": 2,
-            "replys": []
+          "id": 2,
+          "addressed": "john",
+          "user": {
+            "userId": 123153342,
+            "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
+            "userName": "raul"
+          },
+          "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
+          "userName": "raul",
+          "data": 1647454370870,
+          "comment": "Lorem Ipsum является стандартной.",
+          "counterLikes": 1
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "user": {
+        "userId": 12343522,
+        "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
+        "userName": "margo"
+      },
+      "data": 1647454370870,
+      "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века.",
+      "counterLikes": 2,
+      "replys": []
+    }
+  ]
 }

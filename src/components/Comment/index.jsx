@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Counter from "../Counter";
 import CommentsSvg from "../../assets/icons/CommentsSvg";
 import "./Comment.scss";
@@ -11,9 +11,15 @@ const Comment = ({ ...props }) => {
 
   console.log(props);
 
-  let nowDate = new Date();
+  let [visibleReplyInput, setVisibleReplyInput] = useState(false)
 
-  let data = new Date(+props.data);
+  // let nowDate = new Date();
+
+  // let data = new Date(props.data);
+
+  const replyComment = () => {
+    setVisibleReplyInput(!visibleReplyInput)
+  }
 
   return (
     <div className="comment">
@@ -44,10 +50,10 @@ const Comment = ({ ...props }) => {
                     </div>
                 </div>
               ) : (
-                <>
+                <div onClick={replyComment}>
                   <CommentsSvg id="reply" />
                   <span>Reply</span>
-                </>
+                </div>
               )}
             </div>
           </div>
@@ -56,9 +62,14 @@ const Comment = ({ ...props }) => {
           </div>
         </div>
       </div>
-      <div className="comment__reply-input">
-        <ReplyInput addressed={props.name} />
-      </div>
+      {visibleReplyInput && <div className="comment__reply-input">
+        <ReplyInput
+        commentUserId={props.commentUserId}
+        commentId={props.commentId}  
+        addressed={props.name} 
+        userPhoto={user.userPhoto} 
+        />
+      </div>}
       <div className="comment__reply">
         <div className="comment__reply-wrapper">
           <CommentReply reply={props.replys} />

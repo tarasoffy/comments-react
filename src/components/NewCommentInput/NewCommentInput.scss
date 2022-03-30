@@ -1,0 +1,30 @@
+.comment-wrap {
+    width: 600px;
+    display: flex;
+    align-items: center;
+
+    input {
+        margin: 20px;
+        padding: 0 5px;
+        width: 100%;
+        border-radius: 5px;
+        height: 40px;
+        border: 1px solid #C9C8DD;
+    }
+
+    button {
+        width: 120px;
+        height: 40px;
+        color: #fff;
+        font-weight: 600;
+        background-color: #5457B8;
+        text-transform: uppercase;
+        border-radius: 5px;
+    }
+}
+
+.comment__userPhoto img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}

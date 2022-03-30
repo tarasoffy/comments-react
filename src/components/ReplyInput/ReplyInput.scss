@@ -1,7 +1,7 @@
 .reply__input {
 
     display: flex;
-    align-items: center;
+    margin-top: 20px;
 
     button {
         width: 70px;
@@ -14,11 +14,18 @@
     }
 
     input {
-        margin: 20px;
+        margin: 0 20px;
         padding: 0 5px;
         width: 100%;
         border-radius: 5px;
         height: 70px;
         border: 1px solid #C9C8DD;
+        font-size: 14px;
     }
+
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
 }

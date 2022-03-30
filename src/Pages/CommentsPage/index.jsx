@@ -3,17 +3,19 @@ import "./CommentsPage.scss";
 import Comment from "../../components/Comment";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchComments } from "../../store/slices/commentsSlice";
+import NewCommentInput from "../../components/NewCommentInput";
+
 
 const CommentsPage = () => {
   let { comments } = useSelector((comments) => comments.commentsSlice);
-
-  let { user } = useSelector((user) => user.commentsSlice);
 
   let dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchComments());
   }, []);
+
+  
 
   return (
     <div className="wrapper">
@@ -24,20 +26,15 @@ const CommentsPage = () => {
             name={comment.user.userName}
             data={comment.data}
             comment={comment.comment}
-            likes={comment.couterLikes}
+            likes={comment.counterLikes}
             replys={comment.replys}
             commentUserId={comment.user.userId}
-            key={comment.commentId}
+            commentId={comment.id}
+            key={comment.id}
           />
         ))}
       </div>
-      <div className="comment-wrap">
-        <div className="comment__userPhoto">
-          <img src={user.userPhoto} alt="" />
-        </div>
-        <input type="comment" placeholder="Add a comment..." />
-        <button className="comment__send">send</button>
-      </div>
+      <NewCommentInput />
     </div>
   );
 };
