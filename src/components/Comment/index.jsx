@@ -4,35 +4,47 @@ import CommentsSvg from "../../assets/icons/CommentsSvg";
 import "./Comment.scss";
 import CommentReply from "../CommentReply";
 import { useDispatch, useSelector } from "react-redux";
-import ReplyInput from "../ReplyInput";
-import { fetchEditComments, fetchDeleteComments } from "../../store/slices/commentsSlice";
-
+import InputPopup from "../InputPopup";
+// import CommentEditInput from "../CommentEditInput";
+import { setvisibleEditInput } from "../../store/slices/commentsSlice";
+import {
+  fetchEditComments,
+  fetchDeleteComments,
+} from "../../store/slices/commentsSlice";
 
 const Comment = ({ ...props }) => {
   let { user } = useSelector((user) => user.commentsSlice);
 
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
 
-  // console.log(props);
+  // let {visibleEditInput} = useSelector(visible => visible.commentsSlice)
 
-  let [visibleReplyInput, setVisibleReplyInput] = useState(false)
+  // console.log(visibleEditInputState);
+
+  let [visibleReplyInput, setVisibleReplyInput] = useState(false);
+
+  let [visibleEditInput, setVisibleEditInput] = useState(false);
 
   // let nowDate = new Date();
 
   // let data = new Date(props.data);
 
   const replyComment = () => {
-    setVisibleReplyInput(!visibleReplyInput)
-  }
+    setVisibleReplyInput(!visibleReplyInput);
+  };
 
-  // const commentEdit = () => {
-  //   dispatch(fetchEditComments({id:props.commentId}))
-  // }
+  const commentEdit = () => {
+    setVisibleEditInput((visibleEditInput = true));
+    // dispatch(fetchEditComments({id:props.commentId}))
+  };
 
   const commentDelete = () => {
-    dispatch(fetchDeleteComments({id:props.commentId}))
-  }
+    dispatch(fetchDeleteComments({ id: props.commentId }));
+  };
 
+  const changeVisibleEditInput = () => {
+    setVisibleEditInput((visibleEditInput = false));
+  }
 
   return (
     <div className="comment">
@@ -56,11 +68,11 @@ const Comment = ({ ...props }) => {
                   <div onClick={commentDelete} className="comment__delete">
                     <CommentsSvg id="delete" />
                     <button className="comment__delete-btn">Delete</button>
-                    </div>
-                    <div className="comment__edit">
+                  </div>
+                  <div onClick={commentEdit} className="comment__edit">
                     <CommentsSvg id="edit" />
                     <button className="comment__edit-btn">Edit</button>
-                    </div>
+                  </div>
                 </div>
               ) : (
                 <div onClick={replyComment}>
@@ -70,19 +82,33 @@ const Comment = ({ ...props }) => {
               )}
             </div>
           </div>
-          <div className="comment__text">
-            <p>{props.comment}</p>
-          </div>
+          {visibleEditInput === false ? (
+            <div className="comment__text">
+              <p>{props.comment}</p>
+            </div>
+          ) : (
+            <InputPopup 
+            commentText={props.comment}
+            id={props.commentId}
+            button="update"
+            typeInput="edit"
+            visibleEditInptut={changeVisibleEditInput}
+            />
+          )}
         </div>
       </div>
-      {visibleReplyInput && <div className="comment__reply-input">
-        <ReplyInput
-        commentUserId={props.commentUserId}
-        commentId={props.commentId}  
-        addressed={props.name} 
-        userPhoto={user.userPhoto} 
-        />
-      </div>}
+      {visibleReplyInput && (
+        <div className="comment__reply-input">
+          <InputPopup
+            typeInput="reply"
+            commentUserId={props.commentUserId}
+            commentId={props.commentId}
+            addressed={props.name}
+            userPhoto={user.userPhoto}
+            button="reply"
+          />
+        </div>
+      )}
       <div className="comment__reply">
         <div className="comment__reply-wrapper">
           <CommentReply reply={props.replys} />

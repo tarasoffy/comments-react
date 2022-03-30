@@ -8,7 +8,7 @@ const initialState = {
     userPhoto: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
     userId: 123153342,
   },
-  comments: []
+  comments: [],
 }
 
 export const fetchComments = createAsyncThunk(
@@ -19,19 +19,25 @@ export const fetchComments = createAsyncThunk(
   }
 )
 
-// export const fetchEditComments = createAsyncThunk(
-//   'comments/fetchEditComments',
-//   async ({id}) => {
-//     let response = await axios.put('http://localhost:3005/comments', {
-      
-//     }, {
-//       params: {
-//         id: id
-//       }
-//     });
-//     return response.data
-//   }
-// )
+export const fetchEditComments = createAsyncThunk(
+  'comments/fetchEditComments',
+  async ({id, comment}, {dispatch}) => {
+    let response = await axios.put(`http://localhost:3005/comments/${id}`, {
+      id: id,
+        user: {
+          userId: initialState.user.userId,
+          userPhoto: initialState.user.userPhoto,
+          userName: initialState.user.userName
+        },
+        data: Date.now(),
+        comment: comment,
+        counterLikes: 0,
+        replys: []
+    });
+    dispatch(editComment({comment: comment, id: id}))
+    return response.data
+  }
+)
 
 export const fetchDeleteComments = createAsyncThunk(
     'comments/fetcDeleteComments',
@@ -45,9 +51,9 @@ export const fetchDeleteComments = createAsyncThunk(
 
 export const fetchNewComments = createAsyncThunk(
   'comments/fetchNewComments',
-  async ({comment, id}) => {
+  async ({comment}) => {
     let response = await axios.post('http://localhost:3005/comments', {
-        id: id,
+        id: Math.round(Math.random() * 1000000),
         user: {
           userId: initialState.user.userId,
           userPhoto: initialState.user.userPhoto,
@@ -66,22 +72,29 @@ export const commentsSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    addReplyComment: (state, {payload}) => {
-      let commentData = {
-        commentId: Date.now().toFixed(5),
-        addressed: payload.addressed,
-        user: {
-          userId: state.user.userId,
-          userPhoto: state.user.userPhoto,
-          userName: state.user.userName
-        },
-        data: Date.now(),
-        comment: payload.comment,
-        counterLikes: 0
-      } 
+    // addReplyComment: (state, {payload}) => {
+    //   let commentData = {
+    //     // commentId: Date.now().toFixed(5), заменить на id
+    //     addressed: payload.addressed,
+    //     user: {
+    //       userId: state.user.userId,
+    //       userPhoto: state.user.userPhoto,
+    //       userName: state.user.userName
+    //     },
+    //     data: Date.now(),
+    //     comment: payload.comment,
+    //     counterLikes: 0
+    //   } 
 
-      let comment = state.comments.filter(item => item.commentId === payload.commentId)
-      comment[0].replys.push(commentData)
+    //   let comment = state.comments.filter(item => item.commentId === payload.commentId)
+    //   comment[0].replys.push(commentData)
+    // },
+
+
+    editComment: (state, {payload}) => {
+     
+      let editComment = state.comments.find(item => item.id === payload.id);
+      editComment.comment = payload.comment
     },
 
     deleteComment: (state, {payload}) => {
@@ -107,6 +120,6 @@ export const commentsSlice = createSlice({
 })
 
 
-export const { addReplyComment, deleteComment } = commentsSlice.actions
+export const { addReplyComment, deleteComment, editComment } = commentsSlice.actions
 
 export default commentsSlice.reducer

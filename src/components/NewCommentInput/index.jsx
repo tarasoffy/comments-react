@@ -8,14 +8,17 @@ const NewCommentInput = () => {
   let dispatch = useDispatch();
 
   let { user } = useSelector((user) => user.commentsSlice);
-
-  let { comments } = useSelector((commect) => commect.commentsSlice);
-
-  let [inpuValue, setInputValue] = useState("");
+  
+  let [inputValue, setInputValue] = useState("");
 
   const addNewComment = () => {
-    setInputValue("")
-    dispatch(fetchNewComments({ comment: inpuValue, id: comments.length + 1 }));
+    if(inputValue.trim().length === 0) {
+      alert('Заполните поле ввода');
+    } else {
+      setInputValue("")
+      dispatch(fetchNewComments({ comment: inputValue}));
+    }
+   
   };
 
   return (
@@ -24,7 +27,7 @@ const NewCommentInput = () => {
         <img src={user.userPhoto} alt="" />
       </div>
       <input
-        value={inpuValue}
+        value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         type="comment"
         placeholder="Add a comment..."
