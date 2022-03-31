@@ -57,7 +57,7 @@ const CommentHeader = ({
             </div>
           </div>
         ) : (
-          <div onClick={replyComment}>
+          <div className="comment__reply-btn" onClick={replyComment}>
             <CommentsSvg id="reply" />
             <span>Reply</span>
           </div>
