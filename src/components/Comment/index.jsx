@@ -1,49 +1,24 @@
 import React, { useState } from "react";
 import Counter from "../Counter";
-import CommentsSvg from "../../assets/icons/CommentsSvg";
 import "./Comment.scss";
 import CommentReply from "../CommentReply";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import InputPopup from "../InputPopup";
-// import CommentEditInput from "../CommentEditInput";
-import { setvisibleEditInput } from "../../store/slices/commentsSlice";
-import {
-  fetchEditComments,
-  fetchDeleteComments,
-} from "../../store/slices/commentsSlice";
+import CommentHeader from "../CommentHeader";
 
 const Comment = ({ ...props }) => {
   let { user } = useSelector((user) => user.commentsSlice);
-
-  let dispatch = useDispatch();
-
-  // let {visibleEditInput} = useSelector(visible => visible.commentsSlice)
-
-  // console.log(visibleEditInputState);
 
   let [visibleReplyInput, setVisibleReplyInput] = useState(false);
 
   let [visibleEditInput, setVisibleEditInput] = useState(false);
 
-  // let nowDate = new Date();
-
-  // let data = new Date(props.data);
-
-  const replyComment = () => {
-    setVisibleReplyInput(!visibleReplyInput);
-  };
-
-  const commentEdit = () => {
-    setVisibleEditInput((visibleEditInput = true));
-    // dispatch(fetchEditComments({id:props.commentId}))
-  };
-
-  const commentDelete = () => {
-    dispatch(fetchDeleteComments({ id: props.commentId }));
-  };
-
   const changeVisibleEditInput = () => {
-    setVisibleEditInput((visibleEditInput = false));
+    setVisibleEditInput((!visibleEditInput));
+  }
+
+  const changeVisibleReplyInput = () => {
+    setVisibleReplyInput((!visibleReplyInput));
   }
 
   return (
@@ -53,35 +28,14 @@ const Comment = ({ ...props }) => {
           <Counter likes={props.likes} />
         </div>
         <div className="comment__inner">
-          <div className="comment__header">
-            <div className="comment__user-info">
-              <img src={props.photo} alt="photo" />
-              <div className="comment__user-name">
-                {props.name}
-                {props.commentUserId === user.userId && <span>you</span>}
-              </div>
-              <p className="comment__user-data"></p>
-            </div>
-            <div className="comment__reply">
-              {props.commentUserId === user.userId ? (
-                <div className=" comment__wrapper-btn">
-                  <div onClick={commentDelete} className="comment__delete">
-                    <CommentsSvg id="delete" />
-                    <button className="comment__delete-btn">Delete</button>
-                  </div>
-                  <div onClick={commentEdit} className="comment__edit">
-                    <CommentsSvg id="edit" />
-                    <button className="comment__edit-btn">Edit</button>
-                  </div>
-                </div>
-              ) : (
-                <div onClick={replyComment}>
-                  <CommentsSvg id="reply" />
-                  <span>Reply</span>
-                </div>
-              )}
-            </div>
-          </div>
+          <CommentHeader
+            photo={props.photo}
+            name={props.name}
+            commentUserId={props.commentUserId}
+            commentId={props.commentId}
+            visibleReply={changeVisibleReplyInput}
+            visibleEdit={changeVisibleEditInput}
+          />
           {visibleEditInput === false ? (
             <div className="comment__text">
               <p>{props.comment}</p>

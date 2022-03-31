@@ -3,11 +3,10 @@ import "./CommentReply.scss";
 import Counter from "../Counter";
 import CommentsSvg from "../../assets/icons/CommentsSvg";
 import { useSelector } from "react-redux";
+import CommentHeader from "../CommentHeader";
 
 const CommentReply = ({ reply }) => {
-  // console.log(reply);
-
-  let { user } = useSelector((user) => user.commentsSlice);
+  // let { user } = useSelector((user) => user.commentsSlice);
 
   return (
     <>
@@ -19,7 +18,13 @@ const CommentReply = ({ reply }) => {
                   <Counter likes={item.counterLikes} />
                 </div>
                 <div className="reply__inner">
-                  <div className="reply__header">
+                  <CommentHeader
+                    photo={item.user.userPhoto}
+                    name={item.user.userName}
+                    commentUserId={item.user.userId}
+                    commentId={item.id}
+                  />
+                  {/* <div className="reply__header">
                     <div className="reply__user-info">
                       <img src={item.user.userPhoto} alt="photo" />
                       <div className="reply__user-name">
@@ -49,7 +54,20 @@ const CommentReply = ({ reply }) => {
                         </>
                       )}
                     </div>
-                  </div>
+                  </div> */}
+                  {/* {visibleEditInput === false ? (
+                    <div className="comment__text">
+                      <p>{props.comment}</p>
+                    </div>
+                  ) : (
+                    <InputPopup
+                      commentText={props.comment}
+                      id={props.commentId}
+                      button="update"
+                      typeInput="edit"
+                      visibleEditInptut={changeVisibleEditInput}
+                    />
+                  )} */}
                   <div className="reply__text">
                     <p>
                       <span>@{item.addressed}</span>

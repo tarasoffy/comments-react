@@ -1,29 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./InputPopup.scss";
-import { addReplyComment, fetchEditComments } from "../../store/slices/commentsSlice";
+import { fetchEditComments } from "../../store/slices/commentsSlice";
 
 
 const InputPopup = ({ ...props }) => {
-  console.log(props);
+
 
   let dispatch = useDispatch();
-
 
 
   let [inputValueReply, setInputValueReply] = useState("");
 
   let [inputValueEdit, setinputValueEdit] = useState(props.commentText);
-
-  // const replyComment = () => {
-  //   let reply = {
-  //     props.addressed,
-  //     props.commentId, // на какой комментарий отвечаем
-  //     props.commentUserId, //чей комментарий
-  //     props.comment: inputValue
-  //   }
-  //   dispatch(addReplyComment(reply))
-  // }
 
   const editComment = () => {
     props.visibleEditInptut()
@@ -31,7 +20,7 @@ const InputPopup = ({ ...props }) => {
   }
 
   return (
-    <div className="reply__input">
+    <div className="input">
       {props.userPhoto ? <img src={props.userPhoto} alt="" /> : null}
 
       {props.typeInput === "reply" ? (
@@ -41,7 +30,7 @@ const InputPopup = ({ ...props }) => {
             onChange={(e) => setInputValueReply(e.target.value)}
             value={inputValueReply}
           />
-          <button className="reply__btn">reply</button>
+          <button>reply</button>
         </>
       ) : (
         <>
@@ -50,7 +39,7 @@ const InputPopup = ({ ...props }) => {
             onChange={(e) => setinputValueEdit(e.target.value)}
             value={inputValueEdit}
           />
-          <button onClick={editComment} className="reply__btn">update</button>
+          <button onClick={editComment}>update</button>
         </>
       )}
     </div>

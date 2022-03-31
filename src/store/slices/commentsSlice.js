@@ -72,37 +72,15 @@ export const commentsSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    // addReplyComment: (state, {payload}) => {
-    //   let commentData = {
-    //     // commentId: Date.now().toFixed(5), заменить на id
-    //     addressed: payload.addressed,
-    //     user: {
-    //       userId: state.user.userId,
-    //       userPhoto: state.user.userPhoto,
-    //       userName: state.user.userName
-    //     },
-    //     data: Date.now(),
-    //     comment: payload.comment,
-    //     counterLikes: 0
-    //   } 
-
-    //   let comment = state.comments.filter(item => item.commentId === payload.commentId)
-    //   comment[0].replys.push(commentData)
-    // },
-
-
     editComment: (state, {payload}) => {
-     
       let editComment = state.comments.find(item => item.id === payload.id);
       editComment.comment = payload.comment
     },
-
     deleteComment: (state, {payload}) => {
       let restComments = state.comments.filter(item => item.id !== payload);
       state.comments = restComments
     }
   },
-
   extraReducers: (builder) => {
     builder.addCase(fetchComments.fulfilled, (state, {payload}) => {
       state.comments = payload
