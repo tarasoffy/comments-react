@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CommentReply.scss";
 import Counter from "../Counter";
-import CommentsSvg from "../../assets/icons/CommentsSvg";
 import { useSelector } from "react-redux";
 import CommentHeader from "../CommentHeader";
 import InputPopup from "../InputPopup";
 
 const CommentReply = ({ reply }) => {
-  // let { user } = useSelector((user) => user.commentsSlice);
+  let { idReplysVisibleInput } = useSelector(
+    (visible) => visible.commentsSlice
+  );
 
-  let [visibleReplyInput, setVisibleReplyInput] = useState(false);
-
-  let {idReplysVisibleInput} = useSelector(visible => visible.commentsSlice)
-
-  const changeVisibleReplyInput = () => {
-    setVisibleReplyInput((!visibleReplyInput));
-  }
+  let { idEditVisibleInput } = useSelector((visible) => visible.commentsSlice);
 
   return (
     <>
@@ -31,56 +26,27 @@ const CommentReply = ({ reply }) => {
                     photo={item.user.userPhoto}
                     name={item.user.userName}
                     commentUserId={item.user.userId}
-                    commentId={item.id} 
-                    visibleReply={changeVisibleReplyInput}
+                    commentId={item.id} //передаем id комментария в компонент шапкт
                   />
-                  {/* <div className="reply__header">
-                    <div className="reply__user-info">
-                      <img src={item.user.userPhoto} alt="photo" />
-                      <div className="reply__user-name">
-                        {item.user.userName}
-                        {item.user.userId === user.userId && <span>you</span>}
-                      </div>
-                      <p className="reply__user-data"></p>
+                  {idEditVisibleInput !== item.id ? (
+                    <div className="reply__text">
+                      <p>
+                        <span>@{item.addressed}</span>
+                        {item.comment}
+                      </p>
                     </div>
-                    <div className="reply__reply">
-                      {item.user.userId === user.userId ? (
-                        <div className=" reply__wrapper-btn">
-                          <div className="reply__delete">
-                            <CommentsSvg id="delete" />
-                            <button className="reply__delete-btn">
-                              Delete
-                            </button>
-                          </div>
-                          <div className="reply__edit">
-                            <CommentsSvg id="edit" />
-                            <button className="reply__edit-btn">Edit</button>
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <CommentsSvg id="reply" />
-                          <span>Reply</span>
-                        </>
-                      )}
-                    </div>
-                  </div> */}
-                  <div className="reply__text">
-                    <p>
-                      <span>@{item.addressed}</span>
-                      {item.comment}
-                    </p>
-                  </div>
-                  {visibleReplyInput && idReplysVisibleInput === item.id && (
+                  ) : (
+                    <InputPopup
+                      commentText={item.comment}
+                      id={item.commentId}
+                      button="update"
+                      typeInput="edit"
+                    />
+                  )}
+
+                  {idReplysVisibleInput === item.id && (
                     <div className="comment__reply-input">
-                      <InputPopup
-                        typeInput="reply"
-                        // commentUserId={props.commentUserId}
-                        // commentId={item.id}
-                        // addressed={props.name}
-                        // userPhoto={user.userPhoto}
-                        button="reply"
-                      />
+                      <InputPopup typeInput="reply" button="reply" />
                     </div>
                   )}
                 </div>

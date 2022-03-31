@@ -9,6 +9,7 @@ const initialState = {
     userId: 123153342,
   },
   comments: [],
+  idEditVisibleInput:null,
   idReplysVisibleInput: null
 }
 
@@ -74,8 +75,11 @@ export const commentsSlice = createSlice({
   initialState,
   reducers: {
     setReplysVisibleInput: (state, {payload}) => {
-      console.log(payload);
       state.idReplysVisibleInput = payload
+    },
+
+    setEditVisibleInput: (state, {payload}) => {
+      state.idEditVisibleInput = payload
     },
 
     editComment: (state, {payload}) => {
@@ -104,6 +108,6 @@ export const commentsSlice = createSlice({
 })
 
 
-export const { addReplyComment, deleteComment, editComment, setReplysVisibleInput } = commentsSlice.actions
+export const { addReplyComment, deleteComment, editComment, setReplysVisibleInput, setEditVisibleInput } = commentsSlice.actions
 
 export default commentsSlice.reducer

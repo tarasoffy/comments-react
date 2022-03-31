@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Counter from "../Counter";
 import "./Comment.scss";
 import CommentReply from "../CommentReply";
@@ -7,19 +7,12 @@ import InputPopup from "../InputPopup";
 import CommentHeader from "../CommentHeader";
 
 const Comment = ({ ...props }) => {
+
   let { user } = useSelector((user) => user.commentsSlice);
 
-  let [visibleReplyInput, setVisibleReplyInput] = useState(false);
+  let {idReplysVisibleInput} = useSelector(visible => visible.commentsSlice)
 
-  let [visibleEditInput, setVisibleEditInput] = useState(false);
-
-  const changeVisibleEditInput = () => {
-    setVisibleEditInput((!visibleEditInput));
-  }
-
-  const changeVisibleReplyInput = () => {
-    setVisibleReplyInput((!visibleReplyInput));
-  }
+  let {idEditVisibleInput} = useSelector(visible => visible.commentsSlice)
 
   return (
     <div className="comment">
@@ -33,10 +26,8 @@ const Comment = ({ ...props }) => {
             name={props.name}
             commentUserId={props.commentUserId}
             commentId={props.commentId}
-            visibleReply={changeVisibleReplyInput}
-            visibleEdit={changeVisibleEditInput}
           />
-          {visibleEditInput === false ? (
+          {idEditVisibleInput !== props.commentId ? (
             <div className="comment__text">
               <p>{props.comment}</p>
             </div>
@@ -46,12 +37,11 @@ const Comment = ({ ...props }) => {
             id={props.commentId}
             button="update"
             typeInput="edit"
-            visibleEditInptut={changeVisibleEditInput}
             />
           )}
         </div>
       </div>
-      {visibleReplyInput && (
+      {idReplysVisibleInput === props.commentId && (
         <div className="comment__reply-input">
           <InputPopup
             typeInput="reply"

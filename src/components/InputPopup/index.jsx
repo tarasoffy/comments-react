@@ -6,6 +6,7 @@ import { fetchEditComments } from "../../store/slices/commentsSlice";
 
 const InputPopup = ({ ...props }) => {
 
+
   let dispatch = useDispatch();
 
 
@@ -14,7 +15,6 @@ const InputPopup = ({ ...props }) => {
   let [inputValueEdit, setinputValueEdit] = useState(props.commentText);
 
   const editComment = () => {
-    props.visibleEditInptut()
     dispatch(fetchEditComments({comment:inputValueEdit, id: props.id}))
   }
 

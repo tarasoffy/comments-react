@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommentsSvg from "../../assets/icons/CommentsSvg";
-import { fetchDeleteComments, setReplysVisibleInput } from "../../store/slices/commentsSlice";
+import { fetchDeleteComments, setReplysVisibleInput, setEditVisibleInput } from "../../store/slices/commentsSlice";
 import './CommentHeader.scss'
 
 
@@ -11,20 +11,22 @@ const CommentHeader = ({
   name, 
   commentUserId, 
   commentId, 
-  visibleReply,
-  visibleEdit}) => {
+}) => {
+
+   // получаю id комментария 
 
   let dispatch = useDispatch();
 
   let { user } = useSelector((user) => user.commentsSlice);
 
+
+  //отправляю конкретный id комментария(не все, как при map в комп. CommentReply)
   const replyComment = () => {
     dispatch(setReplysVisibleInput(commentId))
-    visibleReply()
   };
 
   const commentEdit = () => {
-    visibleEdit()
+    dispatch(setEditVisibleInput(commentId))
   };
 
   const commentDelete = () => {
