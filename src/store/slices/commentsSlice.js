@@ -9,6 +9,7 @@ const initialState = {
     userId: 123153342,
   },
   comments: [],
+  idReplysVisibleInput: null
 }
 
 export const fetchComments = createAsyncThunk(
@@ -72,6 +73,11 @@ export const commentsSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
+    setReplysVisibleInput: (state, {payload}) => {
+      console.log(payload);
+      state.idReplysVisibleInput = payload
+    },
+
     editComment: (state, {payload}) => {
       let editComment = state.comments.find(item => item.id === payload.id);
       editComment.comment = payload.comment
@@ -98,6 +104,6 @@ export const commentsSlice = createSlice({
 })
 
 
-export const { addReplyComment, deleteComment, editComment } = commentsSlice.actions
+export const { addReplyComment, deleteComment, editComment, setReplysVisibleInput } = commentsSlice.actions
 
 export default commentsSlice.reducer

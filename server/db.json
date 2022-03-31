@@ -24,6 +24,18 @@
           "counterLikes": 6
         },
         {
+          "id": 5251783,
+          "addressed": "patrik",
+          "user": {
+            "userId": 12097625,
+            "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
+            "userName": "sony"
+          },
+          "data": 1647454370870,
+          "comment": "Lorem Ipsum является стандартной рыбой.",
+          "counterLikes": 0
+        },
+        {
           "id": 76523,
           "addressed": "john",
           "user": {
@@ -34,7 +46,7 @@
           "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
           "userName": "raul",
           "data": 1647454370870,
-          "comment": "Lorem Ipsum является стандартной.",
+          "comment": "Это стандарт.",
           "counterLikes": 1
         }
       ]

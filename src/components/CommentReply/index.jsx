@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CommentReply.scss";
 import Counter from "../Counter";
 import CommentsSvg from "../../assets/icons/CommentsSvg";
 import { useSelector } from "react-redux";
 import CommentHeader from "../CommentHeader";
+import InputPopup from "../InputPopup";
 
 const CommentReply = ({ reply }) => {
   // let { user } = useSelector((user) => user.commentsSlice);
+
+  let [visibleReplyInput, setVisibleReplyInput] = useState(false);
+
+  let {idReplysVisibleInput} = useSelector(visible => visible.commentsSlice)
+
+  const changeVisibleReplyInput = () => {
+    setVisibleReplyInput((!visibleReplyInput));
+  }
 
   return (
     <>
@@ -22,7 +31,8 @@ const CommentReply = ({ reply }) => {
                     photo={item.user.userPhoto}
                     name={item.user.userName}
                     commentUserId={item.user.userId}
-                    commentId={item.id}
+                    commentId={item.id} 
+                    visibleReply={changeVisibleReplyInput}
                   />
                   {/* <div className="reply__header">
                     <div className="reply__user-info">
@@ -55,25 +65,24 @@ const CommentReply = ({ reply }) => {
                       )}
                     </div>
                   </div> */}
-                  {/* {visibleEditInput === false ? (
-                    <div className="comment__text">
-                      <p>{props.comment}</p>
-                    </div>
-                  ) : (
-                    <InputPopup
-                      commentText={props.comment}
-                      id={props.commentId}
-                      button="update"
-                      typeInput="edit"
-                      visibleEditInptut={changeVisibleEditInput}
-                    />
-                  )} */}
                   <div className="reply__text">
                     <p>
                       <span>@{item.addressed}</span>
                       {item.comment}
                     </p>
                   </div>
+                  {visibleReplyInput && idReplysVisibleInput === item.id && (
+                    <div className="comment__reply-input">
+                      <InputPopup
+                        typeInput="reply"
+                        // commentUserId={props.commentUserId}
+                        // commentId={item.id}
+                        // addressed={props.name}
+                        // userPhoto={user.userPhoto}
+                        button="reply"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

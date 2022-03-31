@@ -6,7 +6,6 @@ import { fetchEditComments } from "../../store/slices/commentsSlice";
 
 const InputPopup = ({ ...props }) => {
 
-
   let dispatch = useDispatch();
 
 

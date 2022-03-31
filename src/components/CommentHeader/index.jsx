@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommentsSvg from "../../assets/icons/CommentsSvg";
-import { fetchDeleteComments } from "../../store/slices/commentsSlice";
+import { fetchDeleteComments, setReplysVisibleInput } from "../../store/slices/commentsSlice";
 import './CommentHeader.scss'
+
 
 
 const CommentHeader = ({
@@ -18,6 +19,7 @@ const CommentHeader = ({
   let { user } = useSelector((user) => user.commentsSlice);
 
   const replyComment = () => {
+    dispatch(setReplysVisibleInput(commentId))
     visibleReply()
   };
 
@@ -28,6 +30,7 @@ const CommentHeader = ({
   const commentDelete = () => {
     dispatch(fetchDeleteComments({ id: commentId }));
   };
+
 
   return (
     <div className="comment__header">
