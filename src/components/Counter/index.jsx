@@ -1,25 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchComments, fetchEditCouter } from "../../store/slices/commentsSlice";
+import { fetchEditCouter } from "../../store/slices/commentsSlice";
 import './Counter.scss'
 
 
 
-const Counter = ({likes, id}) => {
+const Counter = ({commentLike, id}) => {
 
-  let {comments} = useSelector(comment => comment.commentsSlice)
+  let {likes} = useSelector(like => like.commentsSlice);
 
-  let dispatch = useDispatch()
+  let {comments} = useSelector(comment => comment.commentsSlice);
+
+  let dispatch = useDispatch();
 
   const editCounter = (type) => {
+    let likeId = likes.find(item => item.id === id)
     let comment = comments.find(item => item.id === id)
-    dispatch(fetchEditCouter({data:comment, type: type}))
+    if(likeId.like === type) {
+      return
+    } else {
+      dispatch(fetchEditCouter({data:comment, type: type}))
+    }
   }
 
   return (
     <div className="counter">
       <button onClick={() => editCounter('increment')} className="counter__btn" >+</button>
-      <span >{likes}</span>
+      <span >{commentLike}</span>
       <button onClick={() => editCounter('decrement')} className="counter__btn" >-</button>
     </div>
   );

@@ -11,6 +11,7 @@ const initialState = {
   comments: [],
   idEditVisibleInput: null,
   idReplysVisibleInput: null,
+  likes: [{id: 543535, like: 'decrement'}]
 };
 
 export const fetchComments = createAsyncThunk(
@@ -24,7 +25,7 @@ export const fetchComments = createAsyncThunk(
 export const fetchEditComments = createAsyncThunk(
   "comments/fetchEditComments",
   async ({ id, comment, likes }, { dispatch }) => {
-    console.log(likes);
+    
     let response = await axios.put(`http://localhost:3005/comments/${id}`, {
       id: id,
       user: {
@@ -45,6 +46,7 @@ export const fetchEditComments = createAsyncThunk(
 export const fetchEditCouter = createAsyncThunk(
   "comments/fetchEditCounter",
   async ({ data, type }, { dispatch }) => {
+    console.log(data, type);
     if (type === "increment") {
       let response = await axios.put(
         `http://localhost:3005/comments/${data.id}`,
@@ -135,12 +137,15 @@ export const commentsSlice = createSlice({
 
     setCounterComment: (state, { payload }) => {
       let comment = state.comments.find((item) => item.id === payload.data.id);
+      let like = state.likes.find((item) => item.id === payload.data.id);
       if (payload.type === "increment") {
+        like.like = 'increment'
         comment.counterLikes = comment.counterLikes + 1;
       } else {
         if (comment.counterLikes === 0) {
           return;
         } else {
+          like.like = 'decrement'
           comment.counterLikes = comment.counterLikes - 1;
         }
       }

@@ -22,7 +22,7 @@ const Comment = ({ ...props }) => {
         <div className="comment__counter">
           <Counter
           id={props.commentId}
-          likes={props.likes} />
+          commentLike={props.likes} />
         </div>
         <div className="comment__inner">
           <CommentHeader
