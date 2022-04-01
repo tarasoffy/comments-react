@@ -19,7 +19,7 @@ const CommentReply = ({ reply }) => {
             <div className="reply">
               <div className="reply_wrapper" key={item.userId}>
                 <div className="reply__counter">
-                  <Counter likes={item.counterLikes} />
+                  <Counter commentLike={item.counterLikes} />
                 </div>
                 <div className="reply__inner">
                   <CommentHeader

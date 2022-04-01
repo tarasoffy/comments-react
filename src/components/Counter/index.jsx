@@ -16,8 +16,12 @@ const Counter = ({commentLike, id}) => {
   const editCounter = (type) => {
     let likeId = likes.find(item => item.id === id)
     let comment = comments.find(item => item.id === id)
-    if(likeId.like === type) {
-      return
+    if(likeId) {
+      if(likeId.like === type) {
+        return
+      } else {
+        dispatch(fetchEditCouter({data:comment, type: type}))
+      }
     } else {
       dispatch(fetchEditCouter({data:comment, type: type}))
     }

@@ -9,7 +9,7 @@
       },
       "data": 1648224370870,
       "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне.",
-      "counterLikes": 6,
+      "counterLikes": 12,
       "replys": [
         {
           "id": 543123,
@@ -46,19 +46,19 @@
       },
       "data": 1647454370870,
       "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века.",
-      "counterLikes": 3,
+      "counterLikes": 5,
       "replys": []
     },
     {
-      "id": 403861,
+      "id": 993947,
       "user": {
         "userId": 123153342,
         "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
         "userName": "raul"
       },
-      "data": 1648827060803,
-      "comment": "not yeah",
-      "counterLikes": 2,
+      "data": 1648832109193,
+      "comment": "some",
+      "counterLikes": 1,
       "replys": []
     }
   ],

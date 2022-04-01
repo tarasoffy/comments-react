@@ -21,11 +21,13 @@
       display: flex;
 
       .comment__delete {
+        cursor: pointer;
           display: flex;
           align-items: center;
       }
 
       .comment__edit {
+        cursor: pointer;
         display: flex;
         align-items: center;
         width: 55px;
