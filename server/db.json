@@ -9,7 +9,7 @@
       },
       "data": 1648224370870,
       "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне.",
-      "counterLikes": 10,
+      "counterLikes": 4,
       "replys": [
         {
           "id": 543123,
@@ -34,20 +34,6 @@
           "data": 1647454370870,
           "comment": "Lorem Ipsum является стандартной рыбой.",
           "counterLikes": 0
-        },
-        {
-          "id": 76523,
-          "addressed": "john",
-          "user": {
-            "userId": 123153342,
-            "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-            "userName": "raul"
-          },
-          "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
-          "userName": "raul",
-          "data": 1647454370870,
-          "comment": "Это стандарт.",
-          "counterLikes": 1
         }
       ]
     },
@@ -60,20 +46,35 @@
       },
       "data": 1647454370870,
       "comment": "Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной рыбой для текстов на латинице с начала XVI века.",
-      "counterLikes": 2,
+      "counterLikes": 3,
       "replys": []
     },
     {
-      "id": 872398,
+      "id": 403861,
       "user": {
         "userId": 123153342,
         "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
         "userName": "raul"
       },
-      "data": 1648734585393,
-      "comment": "some",
-      "counterLikes": 0,
+      "data": 1648820017377,
+      "comment": "not yeah rhfhg",
+      "counterLikes": 2,
       "replys": []
+    }
+  ],
+  "replys": [
+    {
+      "id": 913349,
+      "idAddressed": 156423,
+      "addressed": "margo",
+      "user": {
+        "userId": 12345325,
+        "userPhoto": "https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png",
+        "userName": "john"
+      },
+      "data": 1647454370870,
+      "comment": "Lorem Ipsum test.",
+      "counterLikes": 8
     }
   ]
 }

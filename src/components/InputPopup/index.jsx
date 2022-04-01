@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./InputPopup.scss";
-import { fetchEditComments } from "../../store/slices/commentsSlice";
+import { fetchEditComments, setEditVisibleInput, setReplysVisibleInput } from "../../store/slices/commentsSlice";
 
 
 const InputPopup = ({ ...props }) => {
-
 
   let dispatch = useDispatch();
 
@@ -15,7 +14,12 @@ const InputPopup = ({ ...props }) => {
   let [inputValueEdit, setinputValueEdit] = useState(props.commentText);
 
   const editComment = () => {
-    dispatch(fetchEditComments({comment:inputValueEdit, id: props.id}))
+    dispatch(setEditVisibleInput(null))
+    dispatch(fetchEditComments({comment:inputValueEdit, id: props.id, likes: props.likes}))
+  }
+
+  const replyComment = () => {
+    dispatch(setReplysVisibleInput(null))
   }
 
   return (
@@ -29,7 +33,7 @@ const InputPopup = ({ ...props }) => {
             onChange={(e) => setInputValueReply(e.target.value)}
             value={inputValueReply}
           />
-          <button>reply</button>
+          <button onClick={replyComment}>reply</button>
         </>
       ) : (
         <>

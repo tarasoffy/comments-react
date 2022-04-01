@@ -8,6 +8,8 @@ import CommentHeader from "../CommentHeader";
 
 const Comment = ({ ...props }) => {
 
+  // console.log(props);
+
   let { user } = useSelector((user) => user.commentsSlice);
 
   let {idReplysVisibleInput} = useSelector(visible => visible.commentsSlice)
@@ -18,7 +20,9 @@ const Comment = ({ ...props }) => {
     <div className="comment">
       <div className="comment_wrapper">
         <div className="comment__counter">
-          <Counter likes={props.likes} />
+          <Counter
+          id={props.commentId}
+          likes={props.likes} />
         </div>
         <div className="comment__inner">
           <CommentHeader
@@ -32,7 +36,8 @@ const Comment = ({ ...props }) => {
               <p>{props.comment}</p>
             </div>
           ) : (
-            <InputPopup 
+            <InputPopup
+            likes={props.likes} 
             commentText={props.comment}
             id={props.commentId}
             button="update"
@@ -46,7 +51,7 @@ const Comment = ({ ...props }) => {
           <InputPopup
             typeInput="reply"
             commentUserId={props.commentUserId}
-            commentId={props.commentId}
+            id={props.commentId}
             addressed={props.name}
             userPhoto={user.userPhoto}
             button="reply"
@@ -54,6 +59,7 @@ const Comment = ({ ...props }) => {
         </div>
       )}
       <div className="comment__reply">
+        {props.replys.length > 0 && <div className="comment__reply-border"></div>}
         <div className="comment__reply-wrapper">
           <CommentReply reply={props.replys} />
         </div>
