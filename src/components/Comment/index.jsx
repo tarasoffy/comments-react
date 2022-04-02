@@ -8,8 +8,6 @@ import CommentHeader from "../CommentHeader";
 
 const Comment = ({ ...props }) => {
 
-  // console.log(props);
-
   let { user } = useSelector((user) => user.commentsSlice);
 
   let {idReplysVisibleInput} = useSelector(visible => visible.commentsSlice)
@@ -30,6 +28,7 @@ const Comment = ({ ...props }) => {
             name={props.name}
             commentUserId={props.commentUserId}
             commentId={props.commentId}
+            date={props.data}
           />
           {idEditVisibleInput !== props.commentId ? (
             <div className="comment__text">

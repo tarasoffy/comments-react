@@ -115,6 +115,7 @@ export const commentsSlice = createSlice({
   initialState,
   reducers: {
     setReplysVisibleInput: (state, { payload }) => {
+      console.log(payload);
       state.idEditVisibleInput = null;
       state.idReplysVisibleInput = payload;
     },

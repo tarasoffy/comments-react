@@ -27,6 +27,7 @@ const CommentReply = ({ reply }) => {
                     name={item.user.userName}
                     commentUserId={item.user.userId}
                     commentId={item.id} //передаем id комментария в компонент шапкт
+                    date={item.data}
                   />
                   {idEditVisibleInput !== item.id ? (
                     <div className="reply__text">
